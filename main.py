@@ -1,3 +1,4 @@
+from waitress import serve
 from flask import Flask, jsonify, request
 import pickle
 import nltk
@@ -39,4 +40,4 @@ def predict():
     return jsonify({'disorder': disorder})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    serve(app, host='0.0.0.0', port=5000) 
