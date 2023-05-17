@@ -1,12 +1,11 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import pickle
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from flask_cors import CORS
-import numpy as np
 
 app = Flask(__name__)
-CORS(app)  # allow CORS for all routes
+CORS(app)  # Allow CORS for all routes
 
 # Load the pickled model
 with open('svm_pickle_model.pkl', 'rb') as f:
@@ -19,16 +18,15 @@ feature_names = svm_dict["feature_names"]
 # Initialize the sentiment analyzer
 sid = SentimentIntensityAnalyzer()
 
-@app.route('/api/submit', methods=['POST'])
-def predict():
+@app.route('/api/data', methods=['GET'])
+def get_data():
+    data = {'name': 'John', 'age': 30, 'city': 'New York'}
+    return jsonify(data)
 
-    # data = request.get_json()
-    # # process the data here
-    # processed_data = {'name': 'John', 'age': 30, 'city': 'New York'}
-    # # return the processed data as JSON
-    # return jsonify({'processed_data': processed_data})
-    input_array = request.get_json()
-    input_array = np.array(input_array)
+
+@app.route('/api/submit', methods=['POST'])
+def submit_data():
+    input_array = request.get_json()['input_array']
 
     # Perform sentiment analysis and store the results in a list
     sentiment_scores = []
