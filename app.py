@@ -25,7 +25,8 @@ def submit_data():
     input_array= request.get_json()
     input_array = np.array(input_array)
     print("array is",input_array)
-    input_array = [text.replace('"', '') for text in input_array if text != '""']
+    input_array = [text.strip('\"') if text.strip('\"') != '' else ' ' for text in input_array]
+
     #print("input array",input_array)
 
     #Perform sentiment analysis and store the results in a list
