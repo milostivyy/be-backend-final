@@ -4,5 +4,4 @@ gunicorn
 numpy
 flask-cors
 scikit-learn
-nltk.sentiment.vader
 
