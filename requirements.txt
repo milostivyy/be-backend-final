@@ -3,3 +3,5 @@ nltk==3.6.2
 gunicorn
 numpy
 flask-cors
+scikit-learn
+
