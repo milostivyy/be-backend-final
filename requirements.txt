@@ -4,4 +4,5 @@ gunicorn
 numpy
 flask-cors
 scikit-learn
+vader-lexicon
 
